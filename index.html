@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Basudev | Creative Portfolio</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f7f9ff;
+  color:#20243a;
+}
+
+header{
+  padding:25px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:white;
+  border-bottom:1px solid #e8eafa;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:800;
+  color:#333b65;
+}
+
+.logo span{
+  color:#648cff;
+}
+
+.hero{
+  text-align:center;
+  padding:85px 20px;
+  background:linear-gradient(135deg,#e5edff,#f5eaff);
+}
+
+.hero h1{
+  font-size:clamp(36px,8vw,65px);
+  margin-bottom:15px;
+}
+
+.hero h1 span{
+  color:#648cff;
+}
+
+.hero p{
+  color:#666d86;
+  font-size:16px;
+}
+
+section{
+  padding:65px 8%;
+}
+
+.heading{
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.heading h2{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.heading p{
+  color:#858ba0;
+}
+
+.filters{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:35px;
+}
+
+.filters button{
+  border:0;
+  padding:11px 20px;
+  border-radius:25px;
+  background:#e9edff;
+  color:#485a9b;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.filters button.active{
+  background:#648cff;
+  color:white;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(240px,1fr));
+  gap:24px;
+}
+
+.card{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 5px 25px #303b6010;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+}
+
+.preview{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+  display:block;
+  background:#e5eaff;
+}
+
+.placeholder{
+  height:210px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  font-weight:bold;
+  color:#5269a8;
+  background:linear-gradient(135deg,#dce8ff,#f0e2ff);
+}
+
+.card-info{
+  padding:18px;
+}
+
+.card-info h3{
+  font-size:18px;
+  margin-bottom:7px;
+}
+
+.card-info p{
+  color:#9298aa;
+  font-size:14px;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#858ba0;
+  background:white;
+  border-top:1px solid #e8eafa;
+}
+
+.hidden{
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">BASUDEV<span>.</span></div>
+</header>
+
+<div class="hero">
+  <h1>My Creative <span>World</span></h1>
+  <p>Graphic Design • Video Editing • 3D Animation</p>
+</div>
+
+<section>
+
+<div class="heading">
+  <h2>My <span style="color:#648cff">Portfolio</span></h2>
+  <p>A collection of my creative projects.</p>
+</div>
+
+<div class="filters">
+  <button class="active" onclick="filterWork('all',this)">All Work</button>
+  <button onclick="filterWork('design',this)">Graphic Design</button>
+  <button onclick="filterWork('video',this)">Video Editing</button>
+  <button onclick="filterWork('3d',this)">3D Animation</button>
+</div>
+
+<div class="gallery">
+
+  <div class="card" data-category="design">
+    <div class="placeholder">DESIGN 01</div>
+    <div class="card-info">
+      <h3>Graphic Design</h3>
+      <p>My creative artwork</p>
+    </div>
+  </div>
+
+  <div class="card" data-category="design">
+    <div class="placeholder">DESIGN 02</div>
+    <div class="card-info">
+      <h3>Poster Design</h3>
+      <p>My poster collection</p>
+    </div>
+  </div>
+
+  <div class="card" data-category="video">
+    <div class="placeholder">VIDEO 01</div>
+    <div class="card-info">
+      <h3>Video Editing</h3>
+      <p>My edited video</p>
+    </div>
+  </div>
+
+  <div class="card" data-category="video">
+    <div class="placeholder">VIDEO 02</div>
+    <div class="card-info">
+      <h3>Motion Graphics</h3>
+      <p>My motion project</p>
+    </div>
+  </div>
+
+  <div class="card" data-category="3d">
+    <div class="placeholder">3D ART 01</div>
+    <div class="card-info">
+      <h3>3D Animation</h3>
+      <p>My 3D artwork</p>
+    </div>
+  </div>
+
+  <div class="card" data-category="3d">
+    <div class="placeholder">3D ART 02</div>
+    <div class="card-info">
+      <h3>3D Projects</h3>
+      <p>My 3D collection</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<footer>
+  © 2026 BASUDEV | CREATIVE PORTFOLIO
+</footer>
+
+<script>
+function filterWork(category,button){
+
+  document.querySelectorAll('.filters button')
+  .forEach(btn=>btn.classList.remove('active'));
+
+  button.classList.add('active');
+
+  document.querySelectorAll('.card').forEach(card=>{
+    if(category==='all' ||
+       card.dataset.category===category){
+      card.classList.remove('hidden');
+    }else{
+      card.classList.add('hidden');
+    }
+  });
+}
+</script>
+
+</body>
+</html>
