@@ -3,248 +3,149 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>SINU | Creative Portfolio</title>
+<title>Sinu | Creative Portfolio</title>
 
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-  font-family:Arial,sans-serif;
-  background:#f8faff;
-  color:#252b45;
+background:#f5f7ff;
+color:#20243a;
 }
 
 header{
-  padding:22px 7%;
-  background:white;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid #e9edfa;
-  position:sticky;
-  top:0;
-  z-index:10;
+background:white;
+padding:20px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:15px;
+box-shadow:0 2px 12px #00000008;
 }
 
 .logo{
-  font-size:25px;
-  font-weight:900;
-  color:#303b65;
-}
-
-.logo span{
-  color:#7195ff;
-}
-
-nav{
-  display:flex;
-  gap:18px;
+font-size:26px;
+font-weight:bold;
+color:#6757e8;
 }
 
 nav a{
-  text-decoration:none;
-  color:#515a7a;
-  font-size:14px;
-  font-weight:bold;
+text-decoration:none;
+color:#333;
+margin:8px;
+font-size:14px;
 }
 
-nav a:hover{
-  color:#648cff;
+button{
+background:#6757e8;
+color:white;
+border:none;
+padding:11px 17px;
+border-radius:9px;
+cursor:pointer;
+font-weight:bold;
 }
 
 .hero{
-  padding:110px 20px;
-  text-align:center;
-  background:linear-gradient(
-    135deg,#e4edff,#f0e8ff,#e8f7ff
-  );
-}
-
-.hero .small{
-  color:#648cff;
-  letter-spacing:4px;
-  font-weight:bold;
+text-align:center;
+padding:90px 20px;
+background:linear-gradient(120deg,#e5edff,#f4eaff);
 }
 
 .hero h1{
-  font-size:clamp(45px,9vw,80px);
-  margin:20px 0;
-}
-
-.hero h1 span{
-  color:#648cff;
+font-size:48px;
+margin:15px;
 }
 
 .hero p{
-  color:#68708d;
-  font-size:17px;
-}
-
-.button{
-  display:inline-block;
-  margin-top:30px;
-  padding:14px 28px;
-  background:#648cff;
-  color:white;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:bold;
+color:#666;
+line-height:1.7;
 }
 
 section{
-  padding:75px 7%;
+padding:45px 7%;
 }
 
-.heading{
-  text-align:center;
-  margin-bottom:40px;
+h2{
+margin-bottom:25px;
+font-size:28px;
 }
 
-.heading h2{
-  font-size:34px;
-  margin-bottom:12px;
-}
-
-.heading span{
-  color:#648cff;
-}
-
-.heading p{
-  color:#8990a6;
-}
-
-.about-box{
-  max-width:800px;
-  margin:auto;
-  padding:35px;
-  background:white;
-  border-radius:18px;
-  box-shadow:0 8px 30px #293c7010;
-  text-align:center;
-}
-
-.about-box h3{
-  font-size:25px;
-  margin-bottom:15px;
-  color:#648cff;
-}
-
-.about-box p{
-  color:#777f98;
-  line-height:1.9;
-}
-
-.gallery{
-  display:grid;
-  grid-template-columns:
-  repeat(auto-fit,minmax(230px,1fr));
-  gap:25px;
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:20px;
 }
 
 .card{
-  background:white;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 6px 25px #293c7010;
-  transition:.3s;
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 5px 20px #00000008;
 }
 
-.card:hover{
-  transform:translateY(-6px);
+.card img,.card video{
+width:100%;
+height:210px;
+object-fit:cover;
+display:block;
 }
 
-.preview{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  display:block;
+.card-content{
+padding:15px;
 }
 
-.placeholder{
-  height:220px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(
-    135deg,#dce8ff,#eee3ff
-  );
-  color:#637bb7;
-  font-size:23px;
-  font-weight:bold;
+.card-content p{
+color:#777;
+margin-top:8px;
 }
 
-.card-info{
-  padding:20px;
+#adminPanel{
+display:none;
+background:white;
+margin:25px 7%;
+padding:25px;
+border-radius:15px;
 }
 
-.card-info h3{
-  font-size:19px;
-  margin-bottom:8px;
+input,textarea,select{
+width:100%;
+padding:12px;
+margin:9px 0 15px;
+border:1px solid #ddd;
+border-radius:8px;
 }
 
-.card-info p{
-  color:#9299ac;
-  font-size:14px;
+.card-actions{
+display:flex;
+gap:8px;
+margin-top:12px;
 }
 
-.video-box{
-  width:100%;
-  background:#e7ecfa;
+.delete{
+background:#e74c3c;
 }
 
-.video-box video{
-  width:100%;
-  display:block;
-}
-
-.contact{
-  text-align:center;
-  background:linear-gradient(
-    135deg,#e5edff,#f1e9ff
-  );
-}
-
-.contact p{
-  color:#737b96;
+.edit{
+background:#222;
 }
 
 footer{
-  text-align:center;
-  padding:25px;
-  background:white;
-  color:#9299ac;
-  font-size:14px;
+background:white;
+padding:35px;
+text-align:center;
+margin-top:30px;
 }
 
 @media(max-width:600px){
-  header{
-    padding:18px 5%;
-  }
-
-  nav{
-    gap:10px;
-  }
-
-  nav a{
-    font-size:12px;
-  }
-
-  .hero{
-    padding:85px 15px;
-  }
-
-  section{
-    padding:55px 5%;
-  }
+.hero h1{font-size:35px}
+nav{width:100%}
 }
 </style>
 </head>
@@ -253,212 +154,358 @@ footer{
 
 <header>
 
-  <div class="logo">SINU<span>.</span></div>
+<div class="logo">SINU.</div>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#design">Design</a>
-    <a href="#3d">3D</a>
-    <a href="#editing">Editing</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<nav>
+<a href="#about">About</a>
+<a href="#graphic">Graphics</a>
+<a href="#animation">3D</a>
+<a href="#editing">Editing</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<button onclick="login()">Admin Login</button>
 
 </header>
 
-<!-- HOME -->
-
 <div class="hero">
+<h1>Ideas Into Visuals.</h1>
+<p>Hi, I'm Sinu. Welcome to my Creative Portfolio.</p>
+<p>Graphic Designer | 3D Artist | Video Editor</p>
+</div>
 
-  <div class="small">WELCOME TO MY WORLD</div>
+<section id="about">
+<h2>About Me</h2>
+<p>I'm Sinu, a creative learner passionate about graphic design, 3D animation and video editing.</p>
+</section>
 
-  <h1>Creative <span>Portfolio</span></h1>
+<div id="adminPanel">
 
-  <p>
-    Graphic Design • 3D Animation • Video Editing
-  </p>
+<h2>ADMIN DASHBOARD 🔐</h2>
 
-  <a href="#design" class="button">
-    EXPLORE MY WORK
-  </a>
+<button onclick="logout()">Logout</button>
+
+<h3 style="margin-top:25px">Upload New Project</h3>
+
+<input id="title" placeholder="Project Name">
+
+<select id="category">
+<option value="graphic">Graphic Design</option>
+<option value="animation">3D Animation</option>
+<option value="editing">Video Editing</option>
+</select>
+
+<textarea id="description" placeholder="Project Description"></textarea>
+
+<input type="file" id="file" accept="image/*,video/*">
+
+<button onclick="upload()">Upload Project</button>
+
+<hr style="margin:25px 0">
+
+<h3>Change Contact Gmail</h3>
+
+<input id="gmail" placeholder="Your Gmail">
+
+<button onclick="saveGmail()">Save Gmail</button>
+
+<p style="margin-top:15px;color:#888;font-size:12px">
+Your changes are saved in this browser.
+</p>
 
 </div>
 
-<!-- ABOUT ME -->
-
-<section id="about">
-
-  <div class="heading">
-    <h2>About <span>Me</span></h2>
-    <p>Something about my creative journey</p>
-  </div>
-
-  <div class="about-box">
-
-    <h3>Hello, I'm Sinu!</h3>
-
-    <p>
-      Welcome to my creative portfolio.
-      I'm passionate about Graphic Design,
-      3D Animation and Video Editing.
-
-      I enjoy creating visual content,
-      experimenting with new ideas and
-      improving my creative skills.
-
-      This website is a collection of my
-      creative projects and work.
-    </p>
-
-  </div>
-
+<section id="graphic">
+<h2>Graphic Design 🎨</h2>
+<div class="grid" id="graphicGrid"></div>
 </section>
 
-<!-- GRAPHIC DESIGN -->
-
-<section id="design">
-
-  <div class="heading">
-    <h2>Graphic <span>Design</span></h2>
-    <p>My posters, thumbnails, logos and artwork</p>
-  </div>
-
-  <div class="gallery">
-
-    <div class="card">
-      <div class="placeholder">DESIGN 01</div>
-      <div class="card-info">
-        <h3>Poster Design</h3>
-        <p>Creative poster artwork</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="placeholder">DESIGN 02</div>
-      <div class="card-info">
-        <h3>Thumbnail Design</h3>
-        <p>Digital thumbnail artwork</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="placeholder">DESIGN 03</div>
-      <div class="card-info">
-        <h3>Creative Artwork</h3>
-        <p>My graphic design project</p>
-      </div>
-    </div>
-
-  </div>
-
+<section id="animation">
+<h2>3D Animation 🎬</h2>
+<div class="grid" id="animationGrid"></div>
 </section>
-
-<!-- 3D ANIMATION -->
-
-<section id="3d">
-
-  <div class="heading">
-    <h2>3D <span>Animation</span></h2>
-    <p>My 3D artwork and animation projects</p>
-  </div>
-
-  <div class="gallery">
-
-    <div class="card">
-      <div class="placeholder">3D PROJECT 01</div>
-      <div class="card-info">
-        <h3>3D Artwork</h3>
-        <p>3D visual project</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="placeholder">3D PROJECT 02</div>
-      <div class="card-info">
-        <h3>3D Animation</h3>
-        <p>Animation project</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="placeholder">3D PROJECT 03</div>
-      <div class="card-info">
-        <h3>3D Render</h3>
-        <p>Creative 3D artwork</p>
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- VIDEO EDITING -->
 
 <section id="editing">
-
-  <div class="heading">
-    <h2>Video <span>Editing</span></h2>
-    <p>My editing and motion graphics projects</p>
-  </div>
-
-  <div class="gallery">
-
-    <div class="card">
-      <div class="placeholder">VIDEO 01</div>
-      <div class="card-info">
-        <h3>Video Project</h3>
-        <p>My edited video</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="placeholder">VIDEO 02</div>
-      <div class="card-info">
-        <h3>Motion Graphics</h3>
-        <p>Motion design project</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="placeholder">VIDEO 03</div>
-      <div class="card-info">
-        <h3>Creative Editing</h3>
-        <p>My video editing work</p>
-      </div>
-    </div>
-
-  </div>
-
+<h2>Video Editing 🎥</h2>
+<div class="grid" id="editingGrid"></div>
 </section>
 
-<!-- CONTACT -->
-
-<section class="contact" id="contact">
-
-  <div class="heading">
-
-    <h2>Let's <span>Connect</span></h2>
-
-    <p>
-      For creative projects and collaborations
-    </p>
-
-    <a
-      class="button"
-      href="mailto:YOUR-EMAIL@gmail.com">
-
-      CONTACT VIA GMAIL ✉
-
-    </a>
-
-  </div>
-
-</section>
-
-<footer>
-
-  © 2026 SINU | CREATIVE PORTFOLIO
-
+<footer id="contact">
+<h2>Let's Connect</h2>
+<p>Email:</p>
+<a id="emailLink" href="mailto:hello@example.com">
+hello@example.com
+</a>
+<p style="margin-top:20px">© 2026 Sinu Portfolio</p>
 </footer>
+
+<script>
+
+const PASSWORD="sinufolio777";
+
+let isAdmin=false;
+
+let projects=JSON.parse(localStorage.getItem("projects")||"[]");
+
+function save(){
+localStorage.setItem("projects",JSON.stringify(projects));
+}
+
+function login(){
+
+let pass=prompt("Enter Admin Password:");
+
+if(pass===PASSWORD){
+
+isAdmin=true;
+
+document.getElementById("adminPanel").style.display="block";
+
+render();
+
+alert("Welcome Admin!");
+
+}else{
+
+alert("Wrong Password!");
+
+}
+
+}
+
+function logout(){
+
+isAdmin=false;
+
+document.getElementById("adminPanel").style.display="none";
+
+render();
+
+}
+
+function upload(){
+
+let title=document.getElementById("title").value;
+
+let category=document.getElementById("category").value;
+
+let description=document.getElementById("description").value;
+
+let file=document.getElementById("file").files[0];
+
+if(!title||!file){
+
+alert("Enter title and select a file!");
+
+return;
+
+}
+
+if(!file.type.startsWith("image/")&&!file.type.startsWith("video/")){
+
+alert("Select an image or video!");
+
+return;
+
+}
+
+if(file.size>5*1024*1024){
+
+alert("File must be under 5 MB for this demo.");
+
+return;
+
+}
+
+let reader=new FileReader();
+
+reader.onload=function(){
+
+projects.push({
+
+id:Date.now(),
+
+title:title,
+
+category:category,
+
+description:description,
+
+data:reader.result,
+
+type:file.type
+
+});
+
+save();
+
+render();
+
+alert("Project Uploaded Successfully!");
+
+document.getElementById("title").value="";
+
+document.getElementById("description").value="";
+
+document.getElementById("file").value="";
+
+};
+
+reader.readAsDataURL(file);
+
+}
+
+function render(){
+
+let categories=["graphic","animation","editing"];
+
+categories.forEach(cat=>{
+
+let grid=document.getElementById(cat+"Grid");
+
+grid.innerHTML="";
+
+let items=projects.filter(p=>p.category===cat);
+
+if(items.length===0){
+
+grid.innerHTML="<p>No projects uploaded yet.</p>";
+
+}
+
+items.forEach(p=>{
+
+let media=p.type.startsWith("video/")
+
+? `<video src="${p.data}" controls></video>`
+
+: `<img src="${p.data}">`;
+
+let actions=isAdmin?`
+
+<div class="card-actions">
+
+<button class="edit" onclick="editProject(${p.id})">Edit</button>
+
+<button class="delete" onclick="deleteProject(${p.id})">Delete</button>
+
+</div>
+
+`:"";
+
+grid.innerHTML+=`
+
+<div class="card">
+
+${media}
+
+<div class="card-content">
+
+<h3>${escapeHTML(p.title)}</h3>
+
+<p>${escapeHTML(p.description)}</p>
+
+${actions}
+
+</div>
+
+</div>
+
+`;
+
+});
+
+});
+
+}
+
+function escapeHTML(str){
+
+return String(str).replace(/[&<>"']/g,c=>({
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+
+}[c]));
+
+}
+
+function deleteProject(id){
+
+if(confirm("Delete this project?")){
+
+projects=projects.filter(p=>p.id!==id);
+
+save();
+
+render();
+
+}
+
+}
+
+function editProject(id){
+
+let p=projects.find(x=>x.id===id);
+
+let title=prompt("New project title:",p.title);
+
+if(title===null)return;
+
+let desc=prompt("New description:",p.description);
+
+if(desc===null)return;
+
+p.title=title;
+
+p.description=desc;
+
+save();
+
+render();
+
+}
+
+function saveGmail(){
+
+let email=document.getElementById("gmail").value.trim();
+
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+
+alert("Enter a valid Gmail address!");
+
+return;
+
+}
+
+localStorage.setItem("contactEmail",email);
+
+showGmail();
+
+alert("Gmail Saved!");
+
+}
+
+function showGmail(){
+
+let email=localStorage.getItem("contactEmail")||"hello@example.com";
+
+document.getElementById("emailLink").innerText=email;
+
+document.getElementById("emailLink").href="mailto:"+email;
+
+document.getElementById("gmail").value=email;
+
+}
+
+showGmail();
+
+render();
+
+</script>
 
 </body>
 </html>
