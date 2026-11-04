@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SINU | Creative Portfolio</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f7ff;
+color:#20243a;
+}
+
+header{
+background:white;
+padding:20px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:15px;
+}
+
+.logo{
+font-size:27px;
+font-weight:bold;
+color:#6757e8;
+}
+
+nav a{
+text-decoration:none;
+color:#333;
+margin:8px;
+font-size:14px;
+}
+
+button{
+background:#6757e8;
+color:white;
+border:0;
+padding:12px 18px;
+border-radius:9px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.hero{
+text-align:center;
+padding:90px 20px;
+background:linear-gradient(120deg,#e5edff,#f4eaff);
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:15px;
+}
+
+.hero p{
+color:#666;
+line-height:1.8;
+}
+
+section{
+padding:45px 7%;
+}
+
+h2{
+margin-bottom:25px;
+font-size:28px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 5px 20px #00000008;
+}
+
+.card img,.card video{
+width:100%;
+height:220px;
+object-fit:cover;
+display:block;
+background:#eee;
+}
+
+.card-content{
+padding:16px;
+}
+
+.card-content p{
+color:#777;
+margin-top:8px;
+}
+
+#adminPanel{
+display:none;
+background:white;
+margin:25px 7%;
+padding:25px;
+border-radius:15px;
+}
+
+input,textarea,select{
+width:100%;
+padding:13px;
+margin:9px 0 15px;
+border:1px solid #ddd;
+border-radius:8px;
+}
+
+.card-actions{
+display:flex;
+gap:8px;
+margin-top:12px;
+}
+
+.delete{
+background:#e74c3c;
+}
+
+.edit{
+background:#222;
+}
+
+footer{
+background:white;
+padding:40px;
+text-align:center;
+margin-top:30px;
+}
+
+.small{
+color:#888;
+font-size:12px;
+line-height:1.6;
+}
+
+@media(max-width:600px){
+.hero h1{font-size:35px}
+nav{width:100%}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">SINU.</div>
+
+<nav>
+<a href="#about">About</a>
+<a href="#graphic">Graphics</a>
+<a href="#animation">3D</a>
+<a href="#editing">Editing</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<button onclick="login()">Admin Login</button>
+
+</header>
+
+<div class="hero">
+
+<h1>Ideas Into Visuals.</h1>
+
+<p>Hi, I'm Sinu. Welcome to my Creative Portfolio.</p>
+
+<p>Graphic Designer | 3D Artist | Video Editor</p>
+
+</div>
+
+<section id="about">
+
+<h2>About Me</h2>
+
+<p>
+I'm Sinu, a creative learner passionate about
+graphic design, 3D animation and video editing.
+</p>
+
+</section>
+
+<div id="adminPanel">
+
+<h2>ADMIN DASHBOARD 🔐</h2>
+
+<button onclick="logout()">Logout</button>
+
+<h3 style="margin-top:25px">Upload New Project</h3>
+
+<input id="title" placeholder="Project Name">
+
+<select id="category">
+
+<option value="graphic">Graphic Design</option>
+<option value="animation">3D Animation</option>
+<option value="editing">Video Editing</option>
+
+</select>
+
+<textarea id="description"
+placeholder="Project Description"></textarea>
+
+<label>Choose Photo / Video</label>
+
+<input type="file" id="file"
+accept="image/*,video/*">
+
+<p class="small">
+Maximum file size: 1 GB per file.
+Actual limit depends on available browser storage.
+</p>
+
+<button onclick="upload()">Upload Project</button>
+
+<hr style="margin:25px 0">
+
+<h3>Change Contact Gmail</h3>
+
+<input id="gmail" placeholder="Your Gmail">
+
+<button onclick="saveGmail()">Save Gmail</button>
+
+</div>
+
+<section id="graphic">
+
+<h2>Graphic Design 🎨</h2>
+
+<div class="grid" id="graphicGrid"></div>
+
+</section>
+
+<section id="animation">
+
+<h2>3D Animation 🎬</h2>
+
+<div class="grid" id="animationGrid"></div>
+
+</section>
+
+<section id="editing">
+
+<h2>Video Editing 🎥</h2>
+
+<div class="grid" id="editingGrid"></div>
+
+</section>
+
+<footer id="contact">
+
+<h2>Let's Connect</h2>
+
+<p>Email:</p>
+
+<a id="emailLink" href="mailto:hello@example.com">
+hello@example.com
+</a>
+
+<p style="margin-top:20px">
+© 2026 Sinu Portfolio
+</p>
+
+</footer>
+
+<script>
+
+const PASSWORD="sinufolio777";
+
+let isAdmin=false;
+
+let db;
+
+const DB_NAME="SinuPortfolioDB";
+const STORE="projects";
+
+function openDB(){
+
+return new Promise((resolve,reject)=>{
+
+let request=indexedDB.open(DB_NAME,1);
+
+request.onupgradeneeded=function(){
+
+let database=request.result;
+
+if(!database.objectStoreNames.contains(STORE)){
+
+database.createObjectStore(STORE,{
+keyPath:"id",
+autoIncrement:true
+});
+
+}
+
+};
+
+request.onsuccess=function(){
+
+db=request.result;
+resolve();
+
+};
+
+request.onerror=function(){
+
+reject(request.error);
+
+};
+
+});
+
+}
+
+function getAll(){
+
+return new Promise((resolve,reject)=>{
+
+let tx=db.transaction(STORE,"readonly");
+
+let request=tx.objectStore(STORE).getAll();
+
+request.onsuccess=()=>resolve(request.result);
+
+request.onerror=()=>reject(request.error);
+
+});
+
+}
+
+function login(){
+
+let password=prompt("Enter Admin Password:");
+
+if(password===PASSWORD){
+
+isAdmin=true;
+
+document.getElementById("adminPanel").style.display="block";
+
+render();
+
+alert("Welcome Admin!");
+
+}else{
+
+alert("Wrong Password!");
+
+}
+
+}
+
+function logout(){
+
+isAdmin=false;
+
+document.getElementById("adminPanel").style.display="none";
+
+render();
+
+}
+
+async function upload(){
+
+let title=document.getElementById("title").value.trim();
+
+let category=document.getElementById("category").value;
+
+let description=document.getElementById("description").value;
+
+let file=document.getElementById("file").files[0];
+
+if(!title || !file){
+
+alert("Enter project name and choose a file!");
+
+return;
+
+}
+
+if(!file.type.startsWith("image/") &&
+!file.type.startsWith("video/")){
+
+alert("Only images and videos allowed!");
+
+return;
+
+}
+
+const MAX_SIZE=1024*1024*1024;
+
+if(file.size>MAX_SIZE){
+
+alert("File must be under 1 GB!");
+
+return;
+
+}
+
+try{
+
+const record={
+
+title,
+category,
+description,
+file:file,
+type:file.type,
+created:Date.now()
+
+};
+
+let tx=db.transaction(STORE,"readwrite");
+
+tx.objectStore(STORE).add(record);
+
+tx.oncomplete=async()=>{
+
+alert("Project uploaded successfully!");
+
+document.getElementById("title").value="";
+document.getElementById("description").value="";
+document.getElementById("file").value="";
+
+await render();
+
+};
+
+tx.onerror=()=>{
+
+alert("Storage full or upload failed. Check available device storage.");
+
+};
+
+}catch(error){
+
+alert("Upload failed: "+error.message);
+
+}
+
+}
+
+async function deleteProject(id){
+
+if(!confirm("Delete this project?"))return;
+
+let tx=db.transaction(STORE,"readwrite");
+
+tx.objectStore(STORE).delete(id);
+
+tx.oncomplete=render;
+
+}
+
+async function editProject(id){
+
+let items=await getAll();
+
+let p=items.find(x=>x.id===id);
+
+if(!p)return;
+
+let title=prompt("New title:",p.title);
+
+if(title===null)return;
+
+let description=prompt("New description:",p.description);
+
+if(description===null)return;
+
+let tx=db.transaction(STORE,"readwrite");
+
+p.title=title;
+p.description=description;
+
+tx.objectStore(STORE).put(p);
+
+tx.oncomplete=render;
+
+}
+
+async function render(){
+
+let projects=await getAll();
+
+let categories=[
+"graphic",
+"animation",
+"editing"
+];
+
+categories.forEach(category=>{
+
+let grid=document.getElementById(category+"Grid");
+
+grid.innerHTML="";
+
+let items=projects.filter(
+p=>p.category===category
+);
+
+if(items.length===0){
+
+grid.innerHTML="<p>No projects uploaded yet.</p>";
+
+}
+
+items.forEach(p=>{
+
+let url=URL.createObjectURL(p.file);
+
+let media=p.type.startsWith("video/")
+
+?`<video src="${url}" controls playsinline preload="metadata"></video>`
+
+:`<img src="${url}" alt="Project">`;
+
+let actions="";
+
+if(isAdmin){
+
+actions=`
+
+<div class="card-actions">
+
+<button class="edit"
+onclick="editProject(${p.id})">
+Edit
+</button>
+
+<button class="delete"
+onclick="deleteProject(${p.id})">
+Delete
+</button>
+
+</div>
+
+`;
+
+}
+
+grid.innerHTML+=`
+
+<div class="card">
+
+${media}
+
+<div class="card-content">
+
+<h3>${escapeHTML(p.title)}</h3>
+
+<p>${escapeHTML(p.description||"")}</p>
+
+${actions}
+
+</div>
+
+</div>
+
+`;
+
+});
+
+});
+
+}
+
+function escapeHTML(value){
+
+return String(value).replace(/[&<>"']/g,c=>({
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+
+}[c]));
+
+}
+
+function saveGmail(){
+
+let email=document.getElementById("gmail").value.trim();
+
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+
+alert("Enter a valid email!");
+
+return;
+
+}
+
+localStorage.setItem("sinuGmail",email);
+
+showGmail();
+
+alert("Gmail saved!");
+
+}
+
+function showGmail(){
+
+let email=localStorage.getItem("sinuGmail")
+||"hello@example.com";
+
+document.getElementById("gmail").value=email;
+
+document.getElementById("emailLink").textContent=email;
+
+document.getElementById("emailLink").href="mailto:"+email;
+
+}
+
+(async function(){
+
+try{
+
+await openDB();
+
+showGmail();
+
+await render();
+
+}catch(error){
+
+alert("Database error. Please open the website in Chrome.");
+
+}
+
+})();
+
+</script>
+
+</body>
+</html>
