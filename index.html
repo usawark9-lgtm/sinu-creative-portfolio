@@ -388,7 +388,7 @@ async function updateAdminView() {
   const { data } = await db.auth.getSession();
   const user = data.session?.user;
 
-  const isAdmin = user?.email === "YOUR_ADMIN_EMAIL"; sinumanna93@gmail.com
+  const isAdmin = user?.email === "sinumanna93@gmail.com";
 
   document.getElementById("loginBox").style.display =
     isAdmin ? "none" : "block";
