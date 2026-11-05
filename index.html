@@ -290,7 +290,7 @@ const SUPABASE_URL =
   "https://yqunmxzhdfupcchcdgzh.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
-  "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+  "sb_publishable_2z-Q8t2ph_yX6Nkbs-SGbA_ps3Mr1g-";
 
 const db = window.supabase.createClient(
   SUPABASE_URL,
@@ -388,7 +388,7 @@ async function updateAdminView() {
   const { data } = await db.auth.getSession();
   const user = data.session?.user;
 
-  const isAdmin = user?.email === "YOUR_ADMIN_EMAIL";
+  const isAdmin = user?.email === "YOUR_ADMIN_EMAIL"; sinumanna93@gmail.com
 
   document.getElementById("loginBox").style.display =
     isAdmin ? "none" : "block";
